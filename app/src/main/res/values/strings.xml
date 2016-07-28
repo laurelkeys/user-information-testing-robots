@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">User Information Testing Robots</string>
+
+    <!-- User Information Fields' Hints -->
+    <string name="first_name_hint">First name *</string>
+    <string name="last_name_hint">Last name *</string>
+    <string name="phone_number_hint">Phone number</string>
+    <string name="email_hint">Email *</string>
+    <string name="age_hint">Age *</string>
+
+    <!-- Miscellaneous -->
+    <string name="send">Send</string>
+    <string name="success">Success!</string>
+    <string name="failure">Failure!</string>
+
+</resources>
