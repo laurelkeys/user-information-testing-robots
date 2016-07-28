@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
         android:ellipsize="end"
+        android:enabled="false"
         android:hint="@string/phone_number_hint"
         android:inputType="phone"
         android:lines="1"

@@ -49,16 +49,25 @@ public class UserInformationActivityTest {
     }
 
     @Test
-    public void isInvalidLoginUnsuccessful() {
+    public void isFirstNameWithAccentsLoginSuccessful() {
         UserInformationRobot userInformation = new UserInformationRobot();
         ResultRobot result = userInformation
-                .firstName("T1460")
-                .lastName("CH4V35")
-                .email("t@i@a@g@o.com")
-                .age("Seventeen")
+                .fillInformation(validUserInformation)
+                .firstName("João")
                 .send();
 
-        result.isFailure();
+        result.isSuccess();
+    }
+
+    @Test
+    public void isLastNameWithAccentsLoginSuccessful() {
+        UserInformationRobot userInformation = new UserInformationRobot();
+        ResultRobot result = userInformation
+                .fillInformation(validUserInformation)
+                .lastName("Gonçalves")
+                .send();
+
+        result.isSuccess();
     }
 
     @Test
@@ -72,6 +81,27 @@ public class UserInformationActivityTest {
         result.isFailure();
     }
 
+    @Test
+    public void isLastNameWithNumbersLoginUnsuccessful() {
+        UserInformationRobot userInformation = new UserInformationRobot();
+        ResultRobot result = userInformation
+                .fillInformation(validUserInformation)
+                .lastName("Ch4v35")
+                .send();
+
+        result.isFailure();
+    }
+
+    @Test
+    public void isEmptyFirstNameLoginUnsuccessful() {
+        UserInformationRobot userInformation = new UserInformationRobot();
+        ResultRobot result = userInformation
+                .fillInformation(validUserInformation)
+                .firstName("")
+                .send();
+
+        result.isFailure();
+    }
 
     @Test
     public void isEmptyLastNameLoginUnsuccessful() {

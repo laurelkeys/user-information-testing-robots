@@ -3,10 +3,9 @@ package com.laurelkeys.userinformationtestingrobots.robots;
 import com.laurelkeys.userinformationtestingrobots.userinformation.model.UserInformation;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.containsString;
@@ -27,31 +26,31 @@ public class UserInformationRobot {
 
     public UserInformationRobot firstName(String firstName) {
         onView(withHint(containsString("First name")))
-                .perform(clearText(), typeText(firstName), closeSoftKeyboard());
+                .perform(replaceText(firstName), closeSoftKeyboard());
         return this;
     }
 
     public UserInformationRobot lastName(String lastName) {
         onView(withHint(containsString("Last name")))
-                .perform(clearText(), typeText(lastName), closeSoftKeyboard());
+                .perform(replaceText(lastName), closeSoftKeyboard());
         return this;
     }
 
     public UserInformationRobot phoneNumber(String phoneNumber) {
         onView(withHint(containsString("Phone number")))
-                .perform(clearText(), typeText(phoneNumber), closeSoftKeyboard());
+                .perform(replaceText(phoneNumber), closeSoftKeyboard());
         return this;
     }
 
     public UserInformationRobot email(String email) {
         onView(withHint(containsString("Email")))
-                .perform(clearText(), typeText(email), closeSoftKeyboard());
+                .perform(replaceText(email), closeSoftKeyboard());
         return this;
     }
 
     public UserInformationRobot age(String age) {
         onView(withHint(containsString("Age")))
-                .perform(clearText(), typeText(String.valueOf(age)), closeSoftKeyboard());
+                .perform(replaceText(age), closeSoftKeyboard());
         return this;
     }
 
