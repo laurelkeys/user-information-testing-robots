@@ -1,4 +1,4 @@
-package com.laurelkeys.userinformationtestingrobots.robots;
+package com.laurelkeys.userinformationtestingrobots.userinformation.robots;
 
 import com.laurelkeys.userinformationtestingrobots.userinformation.model.UserInformation;
 
@@ -11,7 +11,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.containsString;
 
 /**
- * Created by Tiago on 27/07/2016.
+ * Created by Tiago in July 2016.
  */
 public class UserInformationRobot {
 
@@ -21,6 +21,15 @@ public class UserInformationRobot {
         if (userInformation.phoneNumber != null) phoneNumber(userInformation.phoneNumber);
         email(userInformation.email);
         age(userInformation.age);
+        return this;
+    }
+
+    public UserInformationRobot clearFields() {
+        firstName("");
+        lastName("");
+        phoneNumber("");
+        email("");
+        age("");
         return this;
     }
 

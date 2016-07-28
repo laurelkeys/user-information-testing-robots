@@ -1,12 +1,12 @@
-package com.laurelkeys.userinformationtestingrobots.tests;
+package com.laurelkeys.userinformationtestingrobots.userinformation.tests;
 
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.laurelkeys.userinformationtestingrobots.robots.ResultRobot;
-import com.laurelkeys.userinformationtestingrobots.robots.UserInformationRobot;
+import com.laurelkeys.userinformationtestingrobots.userinformation.robots.ResultRobot;
+import com.laurelkeys.userinformationtestingrobots.userinformation.robots.UserInformationRobot;
 import com.laurelkeys.userinformationtestingrobots.userinformation.model.UserInformation;
 import com.laurelkeys.userinformationtestingrobots.userinformation.view.UserInformationActivity;
 
@@ -20,7 +20,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
- * Created by Tiago on 27/07/2016.
+ * Created by Tiago in July 2016.
  */
 @RunWith(AndroidJUnit4.class)
 public class UserInformationActivityTest {
@@ -36,6 +36,13 @@ public class UserInformationActivityTest {
     }
 
     @Test
+    public void typeFirstAndLastNameThenCloseKeyboard() {
+        onView(withHint("First name *")).perform(ViewActions.typeText("Tiago"));
+        onView(withHint("Last name *")).perform(ViewActions.typeText("Chaves"));
+        onView(withHint("Last name *")).perform(ViewActions.closeSoftKeyboard());
+    }
+
+    @Test
     public void isValidLoginSuccessful() {
         UserInformationRobot userInformation = new UserInformationRobot();
         ResultRobot result = userInformation
@@ -46,6 +53,24 @@ public class UserInformationActivityTest {
                 .send();
 
         result.isSuccess();
+    }
+
+    @Test
+    public void isReturningToUserInformationScreenAfterLoginSuccessful() {
+        new UserInformationRobot()
+                .fillInformation(validUserInformation)
+                .send()
+                .returnToUserInformation();
+        isShowingSendButton();
+    }
+
+    @Test
+    public void isReturningToUserInformationScreenAfterLoginUnsuccessful() {
+        new UserInformationRobot()
+                .clearFields()
+                .send()
+                .returnToUserInformation();
+        isShowingSendButton();
     }
 
     @Test
@@ -115,9 +140,44 @@ public class UserInformationActivityTest {
     }
 
     @Test
-    public void typeFirstAndLastNameThenCloseKeyboard() {
-        onView(withHint("First name *")).perform(ViewActions.typeText("Tiago"));
-        onView(withHint("Last name *")).perform(ViewActions.typeText("Chaves"));
-        onView(withHint("Last name *")).perform(ViewActions.closeSoftKeyboard());
+    public void isLettersOnAgeLoginUnsuccessful() {
+        UserInformationRobot userInformation = new UserInformationRobot();
+        ResultRobot result = userInformation
+                .fillInformation(validUserInformation)
+                .age("Seventeen")
+                .send();
+
+        result.isFailure();
+    }
+
+    @Test
+    public void isEmptyAgeLoginUnsuccessful() {
+        UserInformationRobot userInformation = new UserInformationRobot();
+        ResultRobot result = userInformation
+                .fillInformation(validUserInformation)
+                .age("")
+                .send();
+
+        result.isFailure();
+    }
+
+    // @Test
+    // this test takes quite a bit of time
+    public void isAgeFrom0To99LoginSuccessful() {
+        for (int age = 0; age < 100; ++age) {
+            validLoginWithAge(age)
+                    .isSuccess()
+                    .returnToUserInformation();
+            isShowingSendButton();
+        }
+    }
+
+    public ResultRobot validLoginWithAge(int age) {
+        UserInformationRobot userInformation = new UserInformationRobot();
+        ResultRobot result = userInformation
+                .fillInformation(validUserInformation)
+                .age(String.valueOf(age))
+                .send();
+        return result;
     }
 }
