@@ -16,11 +16,11 @@ import static org.hamcrest.Matchers.containsString;
 public class UserInformationRobot {
 
     public UserInformationRobot fillInformation(UserInformation userInformation) {
-        firstName(userInformation.firstName);
-        lastName(userInformation.lastName);
-        if (userInformation.phoneNumber != null) phoneNumber(userInformation.phoneNumber);
-        email(userInformation.email);
-        age(userInformation.age);
+        firstName(userInformation.getFirstName());
+        lastName(userInformation.getLastName());
+        if (userInformation.getPhoneNumber() != null) phoneNumber(userInformation.getPhoneNumber());
+        email(userInformation.getEmail());
+        age(userInformation.getAge());
         return this;
     }
 
