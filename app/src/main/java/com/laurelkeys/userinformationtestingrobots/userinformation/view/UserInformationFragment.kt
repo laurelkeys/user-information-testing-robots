@@ -10,14 +10,14 @@ import android.view.ViewGroup
 import android.widget.EditText
 import com.laurelkeys.userinformationtestingrobots.R
 import com.laurelkeys.userinformationtestingrobots.extensions.replaceAndCommitTransaction
-import com.laurelkeys.userinformationtestingrobots.userinformation.UserInformationMVP
+import com.laurelkeys.userinformationtestingrobots.userinformation.UserInformationContract
 import com.laurelkeys.userinformationtestingrobots.userinformation.model.UserInformation
 import com.laurelkeys.userinformationtestingrobots.userinformation.presenter.UserInformationFragmentPresenter
 
 /**
  * Created by Tiago in July 2016.
  */
-class UserInformationFragment : Fragment(), UserInformationMVP.View {
+class UserInformationFragment : Fragment(), UserInformationContract.View {
 
     companion object {
         private val TAG = UserInformationFragment::class.simpleName
@@ -28,7 +28,6 @@ class UserInformationFragment : Fragment(), UserInformationMVP.View {
 
     private var firstName: EditText? = null
     private var lastName: EditText? = null
-    private var phoneNumber: EditText? = null
     private var email: EditText? = null
     private var age: EditText? = null
 
@@ -46,7 +45,6 @@ class UserInformationFragment : Fragment(), UserInformationMVP.View {
     fun initialiseInformationFields(view: View) {
         this.firstName = view.findViewById(R.id.first_name) as EditText
         this.lastName = view.findViewById(R.id.last_name) as EditText
-        this.phoneNumber = view.findViewById(R.id.phone_number) as EditText
         this.email = view.findViewById(R.id.email) as EditText
         this.age = view.findViewById(R.id.age) as EditText
     }
@@ -61,16 +59,12 @@ class UserInformationFragment : Fragment(), UserInformationMVP.View {
     private fun setInformationFields(userInformation: UserInformation) {
         firstName?.setText(userInformation.firstName)
         lastName?.setText(userInformation.lastName)
-        phoneNumber?.setText(userInformation.phoneNumber ?: "")
         email?.setText(userInformation.email)
         age?.setText(userInformation.age)
     }
 
     private fun userFromInformationFields(): UserInformation {
-        var phoneNumber: String? = phoneNumber?.text.toString()
-        if (TextUtils.isEmpty(phoneNumber)) phoneNumber = null
-
-        return UserInformation(firstName?.text.toString(), lastName?.text.toString(), phoneNumber, email?.text.toString(), age?.text.toString())
+        return UserInformation(firstName?.text.toString(), lastName?.text.toString(),email?.text.toString(), age?.text.toString())
     }
 
     override fun displaySuccess() {

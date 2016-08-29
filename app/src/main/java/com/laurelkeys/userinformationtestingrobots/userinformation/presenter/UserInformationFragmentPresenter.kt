@@ -2,13 +2,13 @@ package com.laurelkeys.userinformationtestingrobots.userinformation.presenter
 
 import android.util.Log
 
-import com.laurelkeys.userinformationtestingrobots.userinformation.UserInformationMVP
+import com.laurelkeys.userinformationtestingrobots.userinformation.UserInformationContract
 import com.laurelkeys.userinformationtestingrobots.userinformation.model.UserInformation
 
 /**
  * Created by Tiago in July 2016.
  */
-class UserInformationFragmentPresenter(private val mView: UserInformationMVP.View) : UserInformationMVP.Presenter {
+class UserInformationFragmentPresenter(private val mView: UserInformationContract.View) : UserInformationContract.Presenter {
 
     companion object { private val TAG = UserInformationFragmentPresenter::class.simpleName ?: "UserInformationFragmentPresenter" }
 
@@ -22,14 +22,9 @@ class UserInformationFragmentPresenter(private val mView: UserInformationMVP.Vie
     }
 
     private fun isValid(userInformation: UserInformation): Boolean {
-        val validInformation = userInformation.isValidName(userInformation.firstName)
+        return userInformation.isValidName(userInformation.firstName)
                 && userInformation.isValidName(userInformation.lastName)
                 && userInformation.isValidEmail(userInformation.email)
                 && userInformation.isValidAge(userInformation.age)
-
-        return when (userInformation.phoneNumber) {
-            null -> validInformation
-            else -> validInformation && userInformation.isValidPhoneNumber(userInformation.phoneNumber)
-        }
     }
 }

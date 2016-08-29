@@ -30,18 +30,6 @@
         android:maxLines="1" />
 
     <EditText
-        android:id="@+id/phone_number"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        android:ellipsize="end"
-        android:enabled="false"
-        android:hint="@string/phone_number_hint"
-        android:inputType="phone"
-        android:lines="1"
-        android:maxLines="1" />
-
-    <EditText
         android:id="@+id/email"
         android:layout_width="240dp"
         android:layout_height="wrap_content"

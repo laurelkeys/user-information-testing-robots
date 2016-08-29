@@ -5,12 +5,11 @@ import com.laurelkeys.userinformationtestingrobots.userinformation.model.UserInf
 /**
  * Created by Tiago in July 2016.
  */
-interface UserInformationMVP {
+interface UserInformationContract {
 
     interface Model {
-        fun isValidName(name: String): Boolean
 
-        fun isValidPhoneNumber(phoneNumber: String?): Boolean
+        fun isValidName(name: String): Boolean
 
         fun isValidEmail(email: String): Boolean
 
@@ -18,12 +17,14 @@ interface UserInformationMVP {
     }
 
     interface View {
+
         fun displaySuccess()
 
         fun displayFailure()
     }
 
     interface Presenter {
+
         fun onSendClick(userInformation: UserInformation)
     }
 }
