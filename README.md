@@ -3,6 +3,8 @@ Dummy app made to practice Android UI testing, following the 'robot pattern' men
 
 The app is written in Kotlin (:smiley: :metal:) and uses [Espresso](https://developer.android.com/training/testing/espresso) to write the UI tests :coffee:.
 
+Take a look at the [robots](https://github.com/laurelkeys/user-information-testing-robots/tree/master/app/src/androidTest/kotlin/com/laurelkeys/userinformationtestingrobots/userinformation/robots) and also the [testing](https://github.com/laurelkeys/user-information-testing-robots/blob/master/app/src/androidTest/kotlin/com/laurelkeys/userinformationtestingrobots/userinformation/tests/UserInformationActivityTest.kt) :wink:.
+
 
                                                                                                     
          1101              101                                      11010                           
