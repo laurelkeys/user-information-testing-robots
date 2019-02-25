@@ -1,5 +1,7 @@
 # user-information-testing-robots
-Dummy app to practice Android UI testing following the 'robot pattern' mentioned by Jake Wharton (https://realm.io/news/kau-jake-wharton-testing-robots/).
+Dummy app made to practice Android UI testing, following the 'robot pattern' mentioned by Jake Wharton at https://realm.io/news/kau-jake-wharton-testing-robots/ (check it out!).
+
+The app is written in Kotlin (:smiley: :metal:) and uses [Espresso](https://developer.android.com/training/testing/espresso) to write the UI tests :coffee:.
 
 
                                                                                                     
